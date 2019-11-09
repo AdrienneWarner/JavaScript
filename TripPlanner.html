@@ -197,16 +197,43 @@ function insertRow(index){
         })
     } 
 } 
+
+//Form Validation Starts Here
   function validateForm() 
   {
-    var originCity = document.forms["TripForm"]["originCity"];
-    var destinationCity = document.forms["TripForm"]["destinationCity"];
-    var flight = document.forms["TripForm"]["flight"];
-    var hotel = document.forms["TripForm"]["hotel"];
-    var meal = document.forms["TripForm"]["meal"];
-    var numberofDays = document.forms["TripForm"]["numberofDays"];
-    var startDate = document.forms["TripForm"]["startDate"];
-
+    var originCity = document.getElementsByName('originCity[]');
+    var destinationCity = document.getElementsByName("destinationCity");
+    var flight = document.getElementsByName("flight");
+    var hotel = document.getElementsByName("hotel");
+    var meal = document.getElementsByName("meal");
+    var numberofDays = document.getElementsByName("numberofDays");
+    var startDate = document.getElementsByName("startDate");    
+    var funs=['CkoriginCity','CkdestinationCity','Ckflight','Ckhotel','Ckmeal','cknumberofDays','ckstartDate'];
+    var messary=["The Origin City, Please Enter a start city","From, Please Enter the Starting Place","Flight, Please Enter the round trip flight cost in decimals","Hotel, Please enter the hotel cost per day in decimals","Meal, Please enter the cost for meals per day in Decimals","Number of Days, Please enter the number of days in your trips","Start Date, Please enter the start date in the proper format"];
+    var mess=[];
+    for (var zxc0=0;zxc0<flds1.length;zxc0++){
+    var flds=[flds1[zxc0],flds2[zxc0],flds3[zxc0],flds4[zxc0],flds5[zxc0]];
+     if (zxc0==0||CkAny(flds)){
+     for (var zxc0a=0;zxc0a<flds.length;zxc0a++){
+     flds[zxc0a].style.backgroundColor='#ffffff';
+     if (!window[funs[zxc0a]](flds[zxc0a])){
+         flds[zxc0a].style.backgroundColor='#ff0000';
+         mess.push('Row: '+(zxc0+1)+' '+messary[zxc0a]);
+        mess.lst=flds[zxc0a];
+        }
+    }
+  }
+  if (zxc0==0&&mess.length>0){
+   mess.push('Row 1 is Mandatory!!');
+  }
+ }
+ if (mess.length>0){
+  alert(mess.join('\n'));
+  if (mess.lst) mess.lst.focus();
+  return false;
+ }
+ return true;
+}
     console.log(originCity);
 
     if (originCity.value == "")                                  
