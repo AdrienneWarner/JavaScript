@@ -13,6 +13,7 @@
     	<tr>
           <td ><!--Starting City Element-->
             <div class="form-group row">
+                <!--Use for= to send HTML reader the focus-->
               <label for="originCity" class="col-sm-2 col-form-label">Starting City</label>
             </div>
             <div class="col-sm-10">
@@ -95,13 +96,13 @@
     </table>
     <table border="1" table id="trips" class="display" style="width:100%">
       <tr>
-        <th>Starting City</th>
-        <th>Destination City</th>
-        <th>Flight Cost</th>
-        <th>Hotel Cost</th>
-        <th>Meal Cost</th>
-        <th>Number of Days</th>
-        <th>Start Date</th>
+        <th scope="col">Starting City</th>
+        <th scope="col">Destination City</th>
+        <th scope="col">Flight Cost</th>
+        <th scope="col">Hotel Cost</th>
+        <th scope="col">Meal Cost</th>
+        <th scope="col">Number of Days</th>
+        <th scope="col">Start Date</th>
       </tr>
       <tr>
         <td id="col-1-originCity" name="row-1-age" value=""></td>
@@ -119,11 +120,11 @@
  //write table rows and cells     
 
 
-function writeTableHeaders(){
-  var writtenTable = document.getElementById('trips');
-  var currentTrip = tripData[0]; 
+function THeaders(){
+  var trips = document.getElementById('trips');
+  var newTrip = tripData[0]; 
   
-  var header = writtenTable.createTHead();
+  var header = trips.createTHead();
   var row = header.insertRow(0);
   var n = 0;
   
@@ -133,13 +134,12 @@ function writeTableHeaders(){
     n++;
   })
 }
-
+// function if has errors goes here
 var tripInfo = {
 function trips(){   
   }
 
-
-function add_New_Trip(){
+function edit_Trip(){
   var starting_City = document.getElementById('originCity');
   var destinationCity = document.getElementById('destinationCity');
   var totalCost = document.getElementById('cost');
@@ -182,6 +182,10 @@ function insertRow(index){
 
       table.children[0].appendChild(row);
 
+
+//ADD function populateDestinationRow see vid 27:00
+
+
       var trips = document.getElementById('trips');
 
         for (i = 0; i < tripData.length + 1; i++) {
@@ -209,7 +213,7 @@ function insertRow(index){
     var numberofDays = document.getElementsByName("numberofDays");
     var startDate = document.getElementsByName("startDate");    
     var funs=['CkoriginCity','CkdestinationCity','Ckflight','Ckhotel','Ckmeal','cknumberofDays','ckstartDate'];
-    var messary=["The Origin City, Please Enter a start city","From, Please Enter the Starting Place","Flight, Please Enter the round trip flight cost in decimals","Hotel, Please enter the hotel cost per day in decimals","Meal, Please enter the cost for meals per day in Decimals","Number of Days, Please enter the number of days in your trips","Start Date, Please enter the start date in the proper format"];
+    var messary=["The Origin City, Please Enter a start city","From, Please Enter the Starting Place","Flight, Please Enter the round trip flight cost in positive decimals","Hotel, Please enter the hotel cost per day in positive decimals","Meal, Please enter the cost for meals per day in positive Decimals","Number of Days, Please enter the number of days in your trips","Start Date, Please enter the start date in the proper format"];
     var mess=[];
     for (var zxc0=0;zxc0<flds1.length;zxc0++){
     var flds=[flds1[zxc0],flds2[zxc0],flds3[zxc0],flds4[zxc0],flds5[zxc0]];
@@ -223,9 +227,13 @@ function insertRow(index){
         }
     }
   }
-  if (zxc0==0&&mess.length>0){
-   mess.push('Row 1 is Mandatory!!');
-  }
+//streamline your code and abstract it
+//Need an addEventListener
+  //need function for check positive number/positive money/missing value and futuredate check
+  //need focus on incorrect input box, and color it red
+    if (zxc0==0&&mess.length>0){
+    mess.push('Row 1 is Mandatory!!');
+    }
  }
  if (mess.length>0){
   alert(mess.join('\n'));
@@ -233,60 +241,9 @@ function insertRow(index){
   return false;
  }
  return true;
+ //function onAdd, and errors
 }
-    console.log(originCity);
 
-    if (originCity.value == "")                                  
-      { 
-        window.alert("Please enter the Starting City."); 
-        originCity.focus(); 
-        return false; 
-      } 
-
-    if (destinationCity.value == "")                                  
-      { 
-        window.alert("Please enter the Destination City."); 
-        destinationCity.focus(); 
-        return false; 
-      }
-    
-      if (flight.value == "")                                  
-      { 
-        window.alert("Please enter the Flight Cost."); 
-        flight.focus(); 
-        return false; 
-      }
-
-      if (hotel.value == "")                                  
-      { 
-        window.alert("Please enter the Hotel Per Day Cost."); 
-        hotel.focus(); 
-        return false; 
-      }
-
-      if (meal.value == "")                                  
-      { 
-        window.alert("Please enter the Meals Per Day Cost."); 
-        meals.focus(); 
-        return false; 
-      }
-
-      if (numberofDays.value == "")                                  
-      { 
-        window.alert("Please enter the Number of Days."); 
-        numberofDays.focus(); 
-        return false; 
-      }
-
-      if (startDate.value == "")                                  
-      { 
-        window.alert("Please enter the Start Date."); 
-        startDate.focus(); 
-        return false; 
-      }
-  return true; 
- 
-}
 </script>
 </body>
 </html>
