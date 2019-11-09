@@ -81,7 +81,7 @@
       <!-- Submit text and input button-->
       <tr>
           <td><div id="addTrip">
-            <button type="submit" onClick="insertRow()">Add</button>
+            <button type="submit" onClick="trips()">Add</button>
           </td></div>
           </tr>
 
@@ -116,8 +116,46 @@
   </div>
   <!--script src="code.js" /-->
   <script>
+ //write table rows and cells     
 
-    function insertRow(){
+
+function writeTableHeaders(){
+  var writtenTable = document.getElementById('trips');
+  var currentTrip = tripData[0]; 
+  
+  var header = writtenTable.createTHead();
+  var row = header.insertRow(0);
+  var n = 0;
+  
+  Object.keys(currentTrip).forEach((key, index) => {
+    var cell = row.insertCell(n);
+    cell.innerHTML = key;
+    n++;
+  })
+}
+
+var tripInfo = {
+function trips(){   
+  }
+
+
+function add_New_Trip(){
+  var starting_City = document.getElementById('originCity');
+  var destinationCity = document.getElementById('destinationCity');
+  var totalCost = document.getElementById('cost');
+  
+  var newTripData = {
+    originCity: originCity.value,
+    destinationCity: destinationCity.value,
+    totalCost: totalCost.value,
+  };
+  tripInfo.push(newTripInfo);
+  
+  writeTableHeaders();
+  writeTableContent();
+}
+function insertRow(index){
+    var tripInfo = [];
       var table = document.getElementById('trips');
       var row = document.createElement('tr');
       var td1 = document.createElement('td');
@@ -143,8 +181,22 @@
       row.appendChild(td6);
 
       table.children[0].appendChild(row);
+
+      var trips = document.getElementById('trips');
+
+        for (i = 0; i < tripData.length + 1; i++) {
+        var currentTrip = tripData[i]; 
+        var row1 = trips.insertRow(i+1);
+  
+        var n = 0;
+        Object.keys(currentTrip).forEach((key, index) => {
+            console.log("");
+            var cell = row1.insertCell(n);
+            cell.innerHTML = currentTrip[key];
+            n++;
+        })
+    } 
 } 
-    
   function validateForm() 
   {
     var originCity = document.forms["TripForm"]["originCity"];
@@ -192,7 +244,7 @@
         return false; 
       }
 
-      if (numberofdays.value == "")                                  
+      if (numberofDays.value == "")                                  
       { 
         window.alert("Please enter the Number of Days."); 
         numberofDays.focus(); 
