@@ -1,0 +1,213 @@
+
+<html>
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+  <div id="root">
+    <div id="Tripform">
+    <br />
+    <br />
+    <table class="table" id="table">
+      <thead><h1>Trip Planner</h1>
+    	<tr>
+          <td ><!--Starting City Element-->
+            <div class="form-group row">
+              <label for="originCity" class="col-sm-2 col-form-label">Starting City</label>
+            </div>
+            <div class="col-sm-10">
+                <input type="text" autofocus class="form-control" id="originCity" name="originCity" required value="" >
+            </div>
+          </td>
+      </tr>
+      <tr>
+          <td><!--Destination City Element-->
+            <div class="form-group row">
+              <label for="destinationCity" class="col-sm-2 col-form-label">Destination City</label>
+            </div>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="destinationCity" name="destinationCity" required value="">
+            </div>
+          </td>
+      </tr>
+      <tr>
+          <td><!--Cost of Flight Element-->
+          <div class="form-group row">
+              <label for="flight" class="col-sm-2 col-form-label">Cost of Round Trip Flight</label>
+            </div>
+            <div class="col-sm-10">
+                <input type="number" class="form-control" id="flight" name="flight" placeholder="10.0" step="0.01" min="0" max="10000">
+            </div>
+          </td>
+      </tr>
+      <tr>
+          <td><!--Cost of Hotel Element-->
+            <div class="form-group row">
+              <label for="hotel" class="col-sm-2 col-form-label">Cost of Hotel Per Day</label>
+            </div>
+            <div class="col-sm-10">
+                <input type="number" class="form-control" id="hotel" name="hotel" placeholder="10.0" step="0.01" min="0" max="10000">
+            </div>
+          </td>
+      </tr>
+          <td><!--Cost of Meals Element-->
+            <div class="form-group row">
+              <label for="meals" class="col-sm-2 col-form-label">Cost of Meals Per Day</label>
+            </div>
+            <div class="col-sm-10">
+                <input type="number" class="form-control" id="meals" name="meals" placeholder="1.0" step="0.01" min="0" max="10000">
+            </div></td>
+      </tr>
+      <tr>
+          <td><!--Numbert of Days Element-->
+            <div class="form-group row">
+              <label for="numberofDays" class="col-sm-2 col-form-label">Number of Days</label>
+            </div>
+            <div class="col-sm-10">
+                <input type="number" class="form-control" id="numberofDays" name="numberofDays" placeholder="100.0" step="0.01" min="0" max="200">
+            </div></td>
+      </tr>
+      <!-- Starting Date Element-->
+      <!-- set default value in JS to black out today's date-->
+      <tr>
+          <td><div class="form-group row">
+              <label for="startDate" class="col-sm-2 col-form-label">Starting Date</label>
+            </div>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" id="startDate" name="startDate" value="">
+            </div></td>
+      </tr>
+
+      <!-- Submit text and input button-->
+      <tr>
+          <td><div id="addTrip">
+            <button type="submit" onClick="insertRow()">Add</button>
+          </td></div>
+          </tr>
+
+      <!-- Reset form text and input button-->
+
+      <tr>
+          <td><input type="reset" value="reset"></td>
+      </tr>
+    </div>
+<!--Destintation Table-->
+    </table>
+    <table border="1" table id="trips" class="display" style="width:100%">
+      <tr>
+        <th>Starting City</th>
+        <th>Destination City</th>
+        <th>Flight Cost</th>
+        <th>Hotel Cost</th>
+        <th>Meal Cost</th>
+        <th>Number of Days</th>
+        <th>Start Date</th>
+      </tr>
+      <tr>
+        <td id="col-1-originCity" name="row-1-age" value=""></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+        </table>
+  </div>
+  <!--script src="code.js" /-->
+  <script>
+
+    function insertRow(){
+      var table = document.getElementById('trips');
+      var row = document.createElement('tr');
+      var td1 = document.createElement('td');
+      var td2 = document.createElement('td');
+      var td3 = document.createElement('td');
+      var td1 = document.createElement('td');
+      var td2 = document.createElement('td');
+      var td3 = document.createElement('td');
+      td1.innerHTML = document.getElementById('originCity').value;
+      td2.innerHTML = document.getElementById('destinationCity').value;
+      td3.innerHTML = document.getElementById('flight').value;
+      td3.innerHTML = document.getElementById('hotel').value;
+      td3.innerHTML = document.getElementById('meal').value;
+      td3.innerHTML = document.getElementById('numberofDays').value;
+      td3.innerHTML = document.getElementById('startDate').value;
+      
+      row.appendChild(td1);
+      row.appendChild(td2);
+      row.appendChild(td3);
+      row.appendChild(td4);
+      row.appendChild(td5);
+      row.appendChild(td6);
+      row.appendChild(td6);
+
+      table.children[0].appendChild(row);
+} 
+    
+  function validateForm() 
+  {
+    var originCity = document.forms["TripForm"]["originCity"];
+    var destinationCity = document.forms["TripForm"]["destinationCity"];
+    var flight = document.forms["TripForm"]["flight"];
+    var hotel = document.forms["TripForm"]["hotel"];
+    var meal = document.forms["TripForm"]["meal"];
+    var numberofDays = document.forms["TripForm"]["numberofDays"];
+    var startDate = document.forms["TripForm"]["startDate"];
+
+    console.log(originCity);
+
+    if (originCity.value == "")                                  
+      { 
+        window.alert("Please enter the Starting City."); 
+        originCity.focus(); 
+        return false; 
+      } 
+
+    if (destinationCity.value == "")                                  
+      { 
+        window.alert("Please enter the Destination City."); 
+        destinationCity.focus(); 
+        return false; 
+      }
+    
+      if (flight.value == "")                                  
+      { 
+        window.alert("Please enter the Flight Cost."); 
+        flight.focus(); 
+        return false; 
+      }
+
+      if (hotel.value == "")                                  
+      { 
+        window.alert("Please enter the Hotel Per Day Cost."); 
+        hotel.focus(); 
+        return false; 
+      }
+
+      if (meal.value == "")                                  
+      { 
+        window.alert("Please enter the Meals Per Day Cost."); 
+        meals.focus(); 
+        return false; 
+      }
+
+      if (numberofdays.value == "")                                  
+      { 
+        window.alert("Please enter the Number of Days."); 
+        numberofDays.focus(); 
+        return false; 
+      }
+
+      if (startDate.value == "")                                  
+      { 
+        window.alert("Please enter the Start Date."); 
+        startDate.focus(); 
+        return false; 
+      }
+  return true; 
+ 
+}
+</script>
+</body>
+</html>
